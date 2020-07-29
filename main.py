@@ -3,6 +3,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import os
+import news
 
 app = Flask(__name__)
 
@@ -35,7 +36,7 @@ def handle_message(event):
 
         # News columns
     if "ニュース" in event.message.text:
-        js = fetchNews("jp", "general")
+        js = news("jp", "general")
         newsColumns = [
             CarouselColumn(
                 thumbnail_image_url=articles["urlToImage"],
