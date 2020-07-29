@@ -47,12 +47,7 @@ def handle_message(event):
     
     # News columns
     if "ニュース" in event.message.text:
-        
-        # はじめのリアクション
-        random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "だぬ", "ぬてん", "ちょっと考えるの",
-                             "しっかり読むの", "えらいの", "すてきだぬ", "わくわく"]
-        first_reply = TextSendMessage(text=random.choice(random_news_reply))
-
+        # ニュースの送付
         js = News("jp", "general")
         newsColumns = [
             CarouselColumn(
@@ -72,8 +67,14 @@ def handle_message(event):
                         alt_text='ニュース送ったの',
                         template=CarouselTemplate(columns=newsColumns)
                      )
+        
+        # 送付後のリアクション
+        random_news_reply = ["どうぞだぬ", "だぬ", "ぬてん", "ちょっと考えるの", "ぬう〜ん", "絶対読むの”"
+                             "しっかり読むの", "えらいの", "すてきだぬ", "わくわく", "難しいだぬ"]
+        first_reply = TextSendMessage(text=random.choice(random_news_reply))
+
         line_bot_api.reply_message(event.reply_token,
-                                   messages=[first_reply, news_reply])
+                                   messages=[news_reply, first_reply])
     else:
         line_bot_api.reply_message(
             event.reply_token,
