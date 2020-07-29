@@ -48,13 +48,9 @@ def handle_message(event):
     # News columns
     if "ニュース" in event.message.text:
 
-        # random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "だぬ", "ぬてん", "ちょっと考えるの",
-        #                      "しっかり読むの", "えらいの", "すてきだぬ", "わくわく"]
+        random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "だぬ", "ぬてん", "ちょっと考えるの",
+                             "しっかり読むの", "えらいの", "すてきだぬ", "わくわく"]
 
-        # line_bot_api.reply_message(
-        #     event.reply_token,
-        #     TextSendMessage(text=random.choice(random_news_reply))
-        #     )
         
         js = News("jp", "general")
         newsColumns = [
@@ -75,6 +71,9 @@ def handle_message(event):
 
         line_bot_api.reply_message(
             event.reply_token,
+            TextSendMessage(
+                text=random.choice(random_news_reply)
+            ),
             TemplateSendMessage(
                 alt_text='news carousel',
                 template=CarouselTemplate(columns=newsColumns)
