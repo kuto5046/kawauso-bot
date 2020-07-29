@@ -48,11 +48,12 @@ def handle_message(event):
     # News columns
     if "ニュース" in event.message.text:
 
-        # random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "えらいの", "だぬ", "ぬてん", "ちょっと考えるの"]
-        # line_bot_api.reply_message(
-        #     event.reply_token,
-        #     messages=random.choice(random_news_reply))
-
+        random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "えらいの", "だぬ", "ぬてん", "ちょっと考えるの"]
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=random.choice(random_news_reply))
+            )
+        
         # js = News("jp", "general")
         # newsColumns = [
         #     CarouselColumn(
@@ -78,14 +79,13 @@ def handle_message(event):
         #     event.reply_token,
         #     messages=newsCarousel)
 
-        # random_news_reply2 = ["しっかり読むの", "ぬてん", "えらいの", "すてきだぬ", "わくわく"]
-        # line_bot_api.reply_message(
-        #     event.reply_token,
-        #     messages=random.choice(random_news_reply2))
-
+        random_news_reply2 = ["しっかり読むの", "ぬてん", "えらいの", "すてきだぬ", "わくわく"]
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=event.message.text+"だぬ"))
+            TextSendMessage(text=random.choice(random_news_reply2))
+            )
+
+
     
     else:
         line_bot_api.reply_message(
