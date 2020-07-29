@@ -53,35 +53,39 @@ def handle_message(event):
         #     event.reply_token,
         #     messages=random.choice(random_news_reply))
 
-        js = News("jp", "general")
-        newsColumns = [
-            CarouselColumn(
-                thumbnail_image_url=articles["urlToImage"],
-                title=articles["source"]["name"],
-                text="Powered by NewsAPI.org",
-                actions=[
-                    URITemplateAction(
-                        label="Check",
-                        uri=articles["url"]
-                    )
-                ]
-            )
-            for articles in js["articles"]
-        ]
+        # js = News("jp", "general")
+        # newsColumns = [
+        #     CarouselColumn(
+        #         thumbnail_image_url=articles["urlToImage"],
+        #         title=articles["source"]["name"],
+        #         text="Powered by NewsAPI.org",
+        #         actions=[
+        #             URITemplateAction(
+        #                 label="Check",
+        #                 uri=articles["url"]
+        #             )
+        #         ]
+        #     )
+        #     for articles in js["articles"]
+        # ]
 
-        newsCarousel = TemplateSendMessage(
-            alt_text='news carousel',
-            template=CarouselTemplate(columns=newsColumns)
-        )
+        # newsCarousel = TemplateSendMessage(
+        #     alt_text='news carousel',
+        #     template=CarouselTemplate(columns=newsColumns)
+        # )
 
-        line_bot_api.reply_message(
-            event.reply_token,
-            messages=newsCarousel)
+        # line_bot_api.reply_message(
+        #     event.reply_token,
+        #     messages=newsCarousel)
 
         # random_news_reply2 = ["しっかり読むの", "ぬてん", "えらいの", "すてきだぬ", "わくわく"]
         # line_bot_api.reply_message(
         #     event.reply_token,
         #     messages=random.choice(random_news_reply2))
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text+"だぬ"))
     
     else:
         line_bot_api.reply_message(
