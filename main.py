@@ -5,7 +5,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, CarouselT
 import os
 from news import News
 from weather import Weather
-
+import random
 
 app = Flask(__name__)
 
