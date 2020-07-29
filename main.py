@@ -51,8 +51,8 @@ def handle_message(event):
         # はじめのリアクション
         random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "だぬ", "ぬてん", "ちょっと考えるの",
                              "しっかり読むの", "えらいの", "すてきだぬ", "わくわく"]
-        first_reply = TextSendMessage(text=random.choice(random_news_reply)
-        
+        first_reply = TextSendMessage(text=random.choice(random_news_reply))
+
         js = News("jp", "general")
         newsColumns = [
             CarouselColumn(
