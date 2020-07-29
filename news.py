@@ -13,9 +13,9 @@ def News(country, category):
     response = requests.get(url)
     js = response.json()
     counter = 0
-    # Skip through the first 10 entries and then pop the rest
+    # Skip through the first 5 entries and then pop the rest
     for articles in js["articles"]:
-        while counter <= 9:
+        while counter <= 4:
             counter += 1
             break
         while counter <= int(js["totalResults"]):

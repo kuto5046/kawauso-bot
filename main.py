@@ -1,10 +1,11 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, CarouselTemplate, CarouselColumn
 import os
 from news import News
 from weather import Weather
+
 
 app = Flask(__name__)
 
@@ -37,6 +38,12 @@ def handle_message(event):
 
         # News columns
     if "ニュース" in event.message.text:
+
+        random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "えらいの", "だぬ", "ぬてん", "ちょっと考えるの"]
+        line_bot_api.reply_message(
+            event.reply_token,
+            messages=random.choice(random_news_reply))
+
         js = News("jp", "general")
         newsColumns = [
             CarouselColumn(
@@ -57,10 +64,6 @@ def handle_message(event):
             alt_text='news carousel',
             template=CarouselTemplate(columns=newsColumns)
         )
-        random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "えらいの", "だぬ", "ぬてん", "ちょっと考えるの"]
-        line_bot_api.reply_message(
-            event.reply_token,
-            messages=random.choice(random_news_reply))
 
         line_bot_api.reply_message(
             event.reply_token,
