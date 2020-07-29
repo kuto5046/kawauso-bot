@@ -35,8 +35,12 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
-        # News columns
+    # QuickMenu options
+    optionList = ['ニュース']
+    infoItems = [QuickReplyButton(action=MessageAction(
+        label=f"{option}", text=f"{option}")) for option in optionList]
+    
+    # News columns
     if "ニュース" in event.message.text:
 
         random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "えらいの", "だぬ", "ぬてん", "ちょっと考えるの"]
