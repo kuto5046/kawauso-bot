@@ -70,12 +70,10 @@ def handle_message(event):
         ]
         news_reply = TemplateSendMessage(
                         alt_text='ニュース送ったの',
-                        template=CarouselTemplate(columns=newsColumns
+                        template=CarouselTemplate(columns=newsColumns)
                      )
-
         line_bot_api.reply_message(event.reply_token,
                                    messages=[first_reply, news_reply])
-
     else:
         line_bot_api.reply_message(
             event.reply_token,
