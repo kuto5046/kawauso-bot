@@ -6,7 +6,7 @@ apiKey = os.environ["WEATHER_API_KEY"]
 apiUrl = "https://api.openweathermap.org/data/2.5/forecast?units=metric&lat={lat}&lon={lon}&APPID={key}"
 
 
-def fetchWeather(lat, lon):
+def Weather(lat, lon):
     url = apiUrl.format(lat=lat, lon=lon, key=apiKey)
     response = requests.get(url)
     js = response.json()

@@ -8,7 +8,7 @@ apiKey = os.environ["NEWS_API_KEY"]
 apiUrl = "https://newsapi.org/v2/top-headlines?country={country}&category={category}&apiKey={apiKey}"
 
 
-def fetchNews(country, category):
+def News(country, category):
     url = apiUrl.format(country=country, category=category, apiKey=apiKey)
     response = requests.get(url)
     js = response.json()
