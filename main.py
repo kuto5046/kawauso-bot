@@ -69,7 +69,7 @@ def handle_message(event):
                      )
         
         # 送付後のリアクション
-        random_news_reply = ["どうぞだぬ", "だぬ", "ぬてん", "ちょっと考えるの", "ぬう〜ん", "絶対読むの”"
+        random_news_reply = ["どうぞだぬ", "だぬ", "ぬてん", "ちょっと考えるの", "ぬう〜ん", "絶対読むの",
                              "しっかり読むの", "えらいの", "すてきだぬ", "わくわく", "難しいだぬ"]
         first_reply = TextSendMessage(text=random.choice(random_news_reply))
 
