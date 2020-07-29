@@ -47,16 +47,17 @@ def handle_message(event):
     
     # News columns
     if "ニュース" in event.message.text:
-
+        
+        # はじめのリアクション
         random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "だぬ", "ぬてん", "ちょっと考えるの",
                              "しっかり読むの", "えらいの", "すてきだぬ", "わくわく"]
-
+        first_reply = TextSendMessage(text=random.choice(random_news_reply)
         
         js = News("jp", "general")
         newsColumns = [
             CarouselColumn(
                 thumbnail_image_url=articles["urlToImage"],
-                title=articles["source"]["name"],
+                title=articles["title"],
                 text="Powered by NewsAPI.org",
                 actions=[
                     URITemplateAction(
@@ -67,19 +68,16 @@ def handle_message(event):
             )
             for articles in js["articles"]
         ]
+        news_reply = TemplateSendMessage(
+                        alt_text='ニュース送ったの',
+                        template=CarouselTemplate(columns=newsColumns
+                     )
 
+        line_bot_api.reply_message(event.reply_token,
+                                   messages=[first_reply,
+                                             news_reply]
+                                  )
 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(
-                text=random.choice(random_news_reply)
-            ),
-            TemplateSendMessage(
-                alt_text='news carousel',
-                template=CarouselTemplate(columns=newsColumns)
-            )
-        )
-    
     else:
         line_bot_api.reply_message(
             event.reply_token,
