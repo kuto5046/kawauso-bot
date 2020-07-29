@@ -32,9 +32,47 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text+"だぬ"))
+
+        # News columns
+    if "ニュース" in event.message.text:
+        js = fetchNews("jp", "general")
+        newsColumns = [
+            CarouselColumn(
+                thumbnail_image_url=articles["urlToImage"],
+                title=articles["source"]["name"],
+                text="Powered by NewsAPI.org",
+                actions=[
+                    URITemplateAction(
+                        label="Check",
+                        uri=articles["url"]
+                    )
+                ]
+            )
+            for articles in js["articles"]
+        ]
+
+        newsCarousel = TemplateSendMessage(
+            alt_text='news carousel',
+            template=CarouselTemplate(columns=newsColumns)
+        )
+        random_news_reply = ["ちょっとまってだぬ", "わかったぬ", "えらいの", "だぬ", "ぬてん", "ちょっと考えるの"]
+        line_bot_api.reply_message(
+            event.reply_token,
+            messages=random.choice(random_news_reply))
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            messages=newsCarousel)
+
+        random_news_reply2 = ["しっかり読むの", "ぬてん", "えらいの", "すてきだぬ", "わくわく"]
+        line_bot_api.reply_message(
+            event.reply_token,
+            messages=random.choice(random_news_reply2))
+    
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text+"だぬ"))
 
 
 if __name__ == "__main__":
