@@ -58,7 +58,7 @@ def handle_message(event):
             CarouselColumn(
                 thumbnail_image_url=articles["urlToImage"],
                 title=articles["title"],
-                text="Powered by NewsAPI.org",
+                text=articles["source"]["name"],
                 actions=[
                     URITemplateAction(
                         label="Check",
@@ -74,9 +74,7 @@ def handle_message(event):
                      )
 
         line_bot_api.reply_message(event.reply_token,
-                                   messages=[first_reply,
-                                             news_reply]
-                                  )
+                                   messages=[first_reply, news_reply])
 
     else:
         line_bot_api.reply_message(
