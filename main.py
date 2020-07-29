@@ -57,7 +57,7 @@ def handle_message(event):
         newsColumns = [
             CarouselColumn(
                 thumbnail_image_url=articles["urlToImage"],
-                title=articles["title"],
+                title=articles["title"][:30],  # titleが４０文字までの規制されるので30文字までとする
                 text=articles["source"]["name"],
                 actions=[
                     URITemplateAction(
